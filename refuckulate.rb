@@ -33,7 +33,7 @@ def cmd(msg)
 end
 
 def throw_out(ext)
-	cmd "find . -regextype posix-egrep -regex \".*\\.(#{ext})$\" -delete"
+	cmd "find . -regextype posix-egrep -regex \".*\\.(#{ext})$\" -print -delete | sed s/^/deleting/g"
 end
 
 
