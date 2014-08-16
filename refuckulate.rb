@@ -10,6 +10,7 @@ class Logger
 
 	def log(msg)
 		@log_count += 1
+		sleep(0.3)
 		puts "[CMKREF #{@log_count}] #{msg}"
 	end
 end
@@ -32,6 +33,7 @@ def main
 
 	log "Looking around for CMakeLists.txt or any other greasy bullshit"
 	if is_cmake?
+		log "Yup, found CMakeLists.txt"
 		log "Your project is fucked in the head."
 	else
 		log "Okay, move along. Nothing here to see."
