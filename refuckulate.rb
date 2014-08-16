@@ -48,6 +48,29 @@ def refuckulate
 	throw_out "f|f77|F|py|pl|C|cxx|sh"
 end
 
+def convert_to_autotools
+	log "Assuming you have gcc and bash"
+	log "If your system doesn't have gcc and bash, you're fucked in the head anyways"
+	File.open("configure","w") do |f|
+		f.write "#!/bin/bash"
+		f.write "echo \"Checking for CMake... NO (fucking decent!)\""
+		f.write "echo \"HAVE_CMAKE_PROBLEMS=NO\" >> make.inc"
+	end
+	cmd "chmod +x configure"
+	File.open("Makefile","w") do |f|
+		f.write "include make.inc"
+		f.write "cmake-is-fucked.exe: main.c"
+		f.write "\tgcc -o cmake-is-fucked.exe main.c"
+	end
+	File.open("main.c","w") do |f|
+		f.write "#include <stdio.h>"
+		f.write "int main() {"
+		f.write "printf(\"CMake is completely fucked in the head\n\");"
+		f.write "return 0;"
+		f.write "}"
+	end
+end
+
 def main
 	@logger = Logger.new
 	banner
@@ -57,6 +80,10 @@ def main
 		log "Yup, found CMakeLists.txt"
 		log "Your project is fucked in the head."
 		refuckulate
+		log "Converting to something decent, like autotools"
+		convert_to_autotools
+		log "Alright, you cheeseburger-eatin bastard, your shit is converted"
+		log "Run ./configure and make like any normal person would"
 	else
 		log "Okay, move along. Nothing here to see."
 	end
