@@ -52,21 +52,21 @@ def convert_to_autotools
 	log "Assuming you have gcc and bash"
 	log "If your system doesn't have gcc and bash, you're fucked in the head anyways"
 	File.open("configure","w") do |f|
-		f.write "#!/bin/bash"
-		f.write "echo \"Checking for CMake... NO (fucking decent!)\""
-		f.write "echo \"HAVE_CMAKE_PROBLEMS=NO\" >> make.inc"
+		f.write "#!/bin/bash\n"
+		f.write "echo \"Checking for CMake... NO (fucking decent!)\"\n"
+		f.write "echo \"HAVE_CMAKE_PROBLEMS=NO\" >> make.inc\n"
 	end
 	cmd "chmod +x configure"
 	File.open("Makefile","w") do |f|
-		f.write "include make.inc"
-		f.write "cmake-is-fucked.exe: main.c"
-		f.write "\tgcc -o cmake-is-fucked.exe main.c"
+		f.write "include make.inc\n"
+		f.write "cmake-is-fucked.exe: main.c\n"
+		f.write "\tgcc -o cmake-is-fucked.exe main.c\n"
 	end
 	File.open("main.c","w") do |f|
-		f.write "#include <stdio.h>"
-		f.write "int main() {"
-		f.write "printf(\"CMake is completely fucked in the head\n\");"
-		f.write "return 0;"
+		f.write "#include <stdio.h>\n"
+		f.write "int main() {\n"
+		f.write "printf(\"CMake is completely fucked in the head\\n\");\n"
+		f.write "return 0;\n"
 		f.write "}"
 	end
 end
