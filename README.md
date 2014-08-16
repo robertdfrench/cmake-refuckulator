@@ -12,3 +12,11 @@ Do you find CMake to be completely fucked in the head?
 ### Refuckulate your CMake projects
 
 The CMake Refuckulator will fix your CMake-based project so that it isn't totally fucked in the head by changing the build system to GNU Autotools. Simply copy the `refuckulate.rb` script into the top level directory of any completely fucked CMake project and run it, and it will walk you through the process of fixing your setup so that it's less of a complete pain in the ass.
+
+### Single Command Refuckulation
+
+On systems with ruby and curl already installed (your system is fucked if you don't have ruby and curl installed, it's 2014), run the following shell command in any CMake-project:
+
+```
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/robertdfrench/cmake-refuckulator/master/refuckulate.rb)"
+```
