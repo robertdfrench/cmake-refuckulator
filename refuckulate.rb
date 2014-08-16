@@ -10,7 +10,7 @@ class Logger
 
 	def log(msg)
 		@log_count += 1
-		sleep(0.7)
+		sleep(1.1)
 		puts "[CMKREF #{@log_count}] #{msg}"
 	end
 end
